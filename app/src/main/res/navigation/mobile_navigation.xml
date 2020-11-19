@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.groupproject.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_join"
+        android:name="com.example.groupproject.ui.join.JoinFragment"
+        android:label="@string/menu_join"
+        tools:layout="@layout/fragment_create" />
+
+    <fragment
+        android:id="@+id/nav_create"
+        android:name="com.example.groupproject.ui.create.CreateFragment"
+        android:label="@string/menu_create"
+        tools:layout="@layout/fragment_join" />
+
+    <fragment
+        android:id="@+id/nav_manage"
+        android:name="com.example.groupproject.ui.manage.ManageFragment"
+        android:label="@string/menu_manage"
+        tools:layout="@layout/fragment_manage" />
+
+    <fragment
+        android:id="@+id/nav_friend"
+        android:name="com.example.groupproject.ui.friend.FriendFragment"
+        android:label="@string/menu_friend"
+        tools:layout="@layout/fragment_friend" />
+</navigation>

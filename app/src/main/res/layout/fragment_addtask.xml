@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/add_add" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="70"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:lines="2"
+                android:text="@string/edittask_name"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="fill_parent"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:lines="2"
+                android:layout_gravity="right"
+                android:inputType="textMultiLine"
+                android:text="@string/edittask_name" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_weight="70"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/edittask_order"
+                android:textSize="16sp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:lines="1"
+                android:layout_gravity="right"
+                android:inputType="textMultiLine"
+                android:text="@string/edittask_order" />
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/buttonedit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/add_add"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

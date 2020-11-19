@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">GroupProject</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="home_joined">Joined Groups</string>
+
+    <string name="view_leave">Leave Group</string>
+    <string name="view_list">Member List</string>
+
+    <string name="manage_edit">Edit</string>
+    <string name="manage_delete">Delete</string>
+
+    <string name="edittask_name">Name</string>
+    <string name="edittask_order">Order</string>
+    <string name="edittask_save">Save</string>
+    <string name="edittask_delete">Delete</string>
+
+    <string name="add_add">Add Task</string>
+
+
+    <string name="create_create">Create Group</string>
+    <string name="create_name">Name</string>
+    <string name="create_description">Description</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_join">Join Groups</string>
+    <string name="menu_create">Create Groups</string>
+    <string name="menu_manage">Manage Groups</string>
+    <string name="menu_friend">Friends</string>
+</resources>

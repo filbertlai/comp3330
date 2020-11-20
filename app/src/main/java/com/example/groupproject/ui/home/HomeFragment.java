@@ -66,10 +66,10 @@ public class HomeFragment extends Fragment {
                                                 )
                                 );
                             }
-                            RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-                            LinearLayoutManager layoutManager= new LinearLayoutManager(getContext());
+                            RecyclerView recyclerView=view.findViewById(R.id.recycler_view);
+                            LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
                             recyclerView.setLayoutManager(layoutManager);
-                            GroupAdapter adapter = new GroupAdapter(groups);
+                            GroupAdapter adapter=new GroupAdapter(groups, true);
                             recyclerView.setAdapter(adapter);
                         }
                         catch(Exception e) {

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,36 +23,34 @@ import com.example.groupproject.ui.join.JoinFragment;
 
 import java.util.ArrayList;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
-    ArrayList<Group> groups;
-    boolean viewJoined;
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
+    ArrayList<Task> tasks;
+    boolean isOwner;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        View groupView;
-        TextView name;
-        TextView progress;
-        TextView description;
-        ImageButton join;
+        View taskView;
+        CheckBox task;
+        View taskContainer;
+        ImageButton edit;
 
         public ViewHolder(View view) {
             super(view);
-            groupView=view;
-            name=groupView.findViewById(R.id.name);
-            progress=view.findViewById(R.id.progress);
-            description=view.findViewById(R.id.description);
-            join=view.findViewById(R.id.join);
+            taskView=view;
+            task=taskView.findViewById(R.id.task);
+            taskContainer=taskView.findViewById(R.id.taskContainer);
+            edit=taskView.findViewById(R.id.edit);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.group_item, parent, false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
         final ViewHolder holder=new ViewHolder(view);
-        CardView cardView=(CardView)view.findViewById(R.id.groupCardView);
+        CardView cardView=(CardView)view.findViewById(R.id.taskCardView);
         cardView.setRadius(30);
         cardView.setCardElevation(10);
-        if(viewJoined) {
+        /*if(layoutID==R.layout.group_item) {
             holder.groupView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -65,8 +64,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             });
         }
         else {
-            holder.progress.setVisibility(View.GONE);
-            holder.join.setVisibility(View.VISIBLE);
             holder.groupView.findViewById(R.id.join).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -78,32 +75,32 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
                 }
             });
-        }
+        }*/
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Group group=groups.get(position);
-        holder.name.setText(group.group_name);
-        holder.description.setText(group.group_description);
-        if(!viewJoined) {
-            return;
+        Task task=tasks.get(position);
+        holder.task.setText(task.task_name);
+        if(isOwner) {
+            holder.edit.setVisibility(View.VISIBLE);
         }
-        holder.progress.setText(group.finished+"/"+group.total);
-        if(group.finished.equals(group.total)) {
-            holder.groupView.findViewById(R.id.groupHeader).setBackgroundColor(ContextCompat.getColor(holder.groupView.getContext(),R.color.finished));
+        if(task.status.equals("1")) {
+            holder.taskContainer.setBackgroundColor(ContextCompat.getColor(holder.taskView.getContext(),R.color.finished));
+            holder.task.setBackgroundColor(ContextCompat.getColor(holder.taskView.getContext(),R.color.finished));
+            holder.task.setChecked(true);
         }
     }
 
     @Override
     public int getItemCount() {
-        return groups.size();
+        return tasks.size();
     }
 
-    public GroupAdapter(ArrayList<Group> groups, boolean viewJoined) {
-        this.groups=groups;
-        this.viewJoined=viewJoined;
+    public TaskAdapter(ArrayList<Task> tasks, boolean isOwner) {
+        this.tasks=tasks;
+        this.isOwner=isOwner;
     }
 
 }

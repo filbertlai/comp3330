@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#999999</color>
+    <color name="unfinished">#b3e5fc</color>
+    <color name="finished">#a3e9a4</color>
+    <color name="delete">#ef5350</color>
 </resources>

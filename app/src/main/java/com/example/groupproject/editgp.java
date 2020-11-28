@@ -1,30 +1,22 @@
-package com.example.groupproject.ui.create;
+package com.example.groupproject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -33,25 +25,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.groupproject.Group;
-import com.example.groupproject.GroupAdapter;
 import com.example.groupproject.R;
 import com.example.groupproject.ui.create.CreateFragment;
+import com.example.groupproject.ui.home.HomeFragment;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateFragment extends Fragment  {
+public class editgp extends Fragment {
+    private String group="1";
 
-    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
-
-        View root = inflater.inflate(R.layout.fragment_create, container, false);
+    public void setgpno(String gpno){
+        this.group=gpno;
+    }
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_editgp, container, false);
         return root;
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -59,7 +52,7 @@ public class CreateFragment extends Fragment  {
         EditText gn = (EditText) view.findViewById(R.id.groupName);
         EditText gd = (EditText) view.findViewById(R.id.groupDescription);
         Button add = (Button) view.findViewById(R.id.createGroup);
-        RequestQueue queue= Volley.newRequestQueue(getContext());
+        RequestQueue queue = Volley.newRequestQueue(getContext());
         String user = "91234567";
         add.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -150,7 +143,7 @@ public class CreateFragment extends Fragment  {
                                             AlertDialog.Builder errormsg = new AlertDialog.Builder(getContext());
                                             errormsg.setTitle("Success");
                                             TextView errortv = new TextView(getActivity());
-                                            errortv.setText("Created a Group!");
+                                            errortv.setText("Edited a Group!");
                                             errortv.setTextColor(Color.BLACK);
                                             errortv.setGravity(Gravity.CENTER);
                                             errortv.setTextSize(15);
@@ -160,11 +153,11 @@ public class CreateFragment extends Fragment  {
                                                 @Override
                                                 public void onClick(DialogInterface d, int arg1) {
                                                     d.dismiss();
-                                                    CreateFragment fragment2 = new CreateFragment();
+                                                    HomeFragment fragment2 = new HomeFragment();
                                                     FragmentManager fragmentManager = getFragmentManager();
                                                     FragmentTransaction fragmentTransaction =
                                                             fragmentManager.beginTransaction();
-                                                    fragmentTransaction.replace(R.id.createfragment, fragment2);
+                                                    fragmentTransaction.replace(R.id.editgp, fragment2);
                                                     fragmentTransaction.addToBackStack(null);
                                                     fragmentTransaction.commit();
                                                 };
@@ -200,7 +193,7 @@ public class CreateFragment extends Fragment  {
                         protected Map<String, String> getParams()
                         {
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("owner", user);
+                            params.put("id", group);
                             params.put("name", new_gn);
                             params.put("description", new_gd);
                             return params;

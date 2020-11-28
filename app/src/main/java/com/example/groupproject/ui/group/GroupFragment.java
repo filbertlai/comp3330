@@ -1,5 +1,6 @@
 package com.example.groupproject.ui.group;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +33,7 @@ import com.example.groupproject.MemberAdapter;
 import com.example.groupproject.R;
 import com.example.groupproject.Task;
 import com.example.groupproject.TaskAdapter;
+import com.example.groupproject.editgp;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,6 +47,12 @@ public class GroupFragment extends Fragment {
     ProgressBar pb;
     TextView progress;
     Button edit, leave, delete;
+    private String group="1";
+
+
+    public void setgpno(String gpno){
+        this.group=gpno;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +70,6 @@ public class GroupFragment extends Fragment {
         delete=(Button)view.findViewById(R.id.deleteGroup);
 
         String user="91234567";
-        String group="1";
 
         RequestQueue queue= Volley.newRequestQueue(getContext());
         StringRequest sr=new StringRequest(Request.Method.GET, "https://i.cs.hku.hk/~khchan4/group.php?user="+user+"&id="+group,
@@ -119,6 +128,7 @@ public class GroupFragment extends Fragment {
                     }
                 });
         queue.add(sr);
+
     }
     public void setProgress(String total, String finished) {
         int p=Integer.parseInt(finished)/Integer.parseInt(total)*100;

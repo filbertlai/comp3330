@@ -59,7 +59,8 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                     Group group = groups.get(position);
                     //Toast.makeText(view.getContext(), group.group_name, Toast.LENGTH_SHORT).show();
                     AppCompatActivity activity=(AppCompatActivity)view.getContext();
-                    Fragment f=new GroupFragment();
+                    GroupFragment f=new GroupFragment();
+                    f.setgpno(group.group_id);
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
                 }
             });

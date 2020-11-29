@@ -65,7 +65,6 @@ public class CreateFragment extends Fragment  {
         EditText gn = (EditText) view.findViewById(R.id.groupName);
         EditText gd = (EditText) view.findViewById(R.id.groupDescription);
         Button add = (Button) view.findViewById(R.id.createGroup);
-        TextView t = (TextView)view.findViewById((R.id.textView2));
         RequestQueue queue= Volley.newRequestQueue(getContext());
 
         add.setOnClickListener(new Button.OnClickListener() {

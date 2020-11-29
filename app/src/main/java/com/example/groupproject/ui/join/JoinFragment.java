@@ -39,7 +39,7 @@ public class JoinFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String user="91230001";
+        String user="91234567";
 
         RequestQueue queue= Volley.newRequestQueue(getContext());
         StringRequest sr=new StringRequest(Request.Method.GET, "https://i.cs.hku.hk/~khchan4/groups.php?joinable=1&user="+user,

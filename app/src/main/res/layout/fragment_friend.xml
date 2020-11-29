@@ -11,12 +11,7 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical"
         android:background="#FFFF">
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="friend" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

@@ -38,6 +38,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_login);
+        String user=getSharedPreferences("progressSharer", MODE_PRIVATE).getString("user_id", "");
+        if(!user.isEmpty()) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            return;
+        }
         getSupportActionBar().setTitle("Welcome!");
         Button login_btn = (Button) findViewById(R.id.login_button);
         phone=(EditText)findViewById(R.id.Name);

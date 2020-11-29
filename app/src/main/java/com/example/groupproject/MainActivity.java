@@ -1,5 +1,6 @@
 package com.example.groupproject;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.logout:
+                SharedPreferences pref = getSharedPreferences("progressSharer", MODE_PRIVATE);
+                pref.edit()
+                        .putString("user_id", "")
+                        .commit();
                 finish();
                 return true;
             default:

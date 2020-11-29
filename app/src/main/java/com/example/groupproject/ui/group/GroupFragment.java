@@ -37,7 +37,7 @@ import com.example.groupproject.R;
 import com.example.groupproject.Task;
 import com.example.groupproject.TaskAdapter;
 import com.example.groupproject.TaskStatusCallback;
-import com.example.groupproject.editgp;
+import com.example.groupproject.ui.editgp;
 import com.example.groupproject.ui.create.AddTaskFragment;
 import com.example.groupproject.ui.edit.EditGroupFragment;
 

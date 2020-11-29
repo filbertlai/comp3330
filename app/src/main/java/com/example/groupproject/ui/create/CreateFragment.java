@@ -52,10 +52,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateFragment extends Fragment  {
+    String user = "0";
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_create, container, false);
+        user=getActivity().getSharedPreferences("progressSharer", getActivity().MODE_PRIVATE).getString("user_id", "");
         return root;
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -63,8 +65,9 @@ public class CreateFragment extends Fragment  {
         EditText gn = (EditText) view.findViewById(R.id.groupName);
         EditText gd = (EditText) view.findViewById(R.id.groupDescription);
         Button add = (Button) view.findViewById(R.id.createGroup);
+        TextView t = (TextView)view.findViewById((R.id.textView2));
         RequestQueue queue= Volley.newRequestQueue(getContext());
-        String user = "91234567";
+
         add.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {

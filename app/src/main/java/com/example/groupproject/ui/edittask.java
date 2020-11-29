@@ -38,6 +38,7 @@ import java.util.Map;
 public class edittask extends Fragment {
     String task_id = "1";
     String group_id = "1";
+    String user = "91234567";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,8 +50,6 @@ public class edittask extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String user = "91234567";
-        String task_id = "1";
         EditText tn = (EditText) view.findViewById(R.id.Name);
         EditText to = (EditText) view.findViewById(R.id.order);
         Button add = (Button) view.findViewById(R.id.buttonedit);

@@ -1,17 +1,13 @@
 package com.example.groupproject.ui.manage;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,18 +53,20 @@ public class ManageFragment extends Fragment {
                             JSONArray arr = new JSONArray(response);
                             for (int i = 0; i < arr.length(); i++) {
                                 JSONObject obj = arr.getJSONObject(i);
-                                groups.add(
-                                        new Group(
-                                                obj.getString("user_id"),
-                                                obj.getString("group_id"),
-                                                obj.getString("group_name"),
-                                                obj.getString("group_description"),
-                                                obj.getString("group_owner"),
-                                                obj.getString("finished"),
-                                                obj.getString("total")
-                                        )
-                                );
-
+                                String owner = obj.getString("group_owner");
+                                if(owner.equals(user)){
+                                    groups.add(
+                                            new Group(
+                                                    obj.getString("user_id"),
+                                                    obj.getString("group_id"),
+                                                    obj.getString("group_name"),
+                                                    obj.getString("group_description"),
+                                                    obj.getString("group_owner"),
+                                                    obj.getString("finished"),
+                                                    obj.getString("total")
+                                            )
+                                    );
+                                }
                             }
                             RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
                             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

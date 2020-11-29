@@ -217,8 +217,6 @@ public class GroupFragment extends Fragment {
             }
         });
 
-        String user="91234567";
-
         RequestQueue queue= Volley.newRequestQueue(getContext());
         StringRequest sr=new StringRequest(Request.Method.GET, "https://i.cs.hku.hk/~khchan4/group.php?user="+user+"&id="+group,
                 new Response.Listener<String>() {

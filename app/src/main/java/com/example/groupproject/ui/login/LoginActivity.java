@@ -101,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                                             pref.edit()
                                                     .putString("user_id", ph)
                                                     .commit();
+                                            phone.setText("");
+                                            password.setText("");
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);
                                         }
@@ -127,6 +129,13 @@ public class LoginActivity extends AppCompatActivity {
                     };
                     queue.add(postRequest);
                 }
+            }
+        });
+        findViewById(R.id.newUser).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }

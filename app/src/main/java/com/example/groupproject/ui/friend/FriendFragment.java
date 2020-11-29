@@ -53,19 +53,17 @@ import java.util.Map;
 
 public class FriendFragment extends Fragment {
     ArrayList<Friend> friends = new ArrayList<>();
+    String user;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_friend, container, false);
+        user=getActivity().getSharedPreferences("progressSharer", getActivity().MODE_PRIVATE).getString("user_id", "");
         return root;
     }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        String user="91234567";
-
-
         RequestQueue queue= Volley.newRequestQueue(getContext());
         StringRequest sr=new StringRequest(Request.Method.GET, "https://i.cs.hku.hk/~khchan4/friends.php?user="+user,
                 new Response.Listener<String>() {

@@ -69,7 +69,7 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_view, container, false);
-
+        user=getActivity().getSharedPreferences("progressSharer", getActivity().MODE_PRIVATE).getString("user_id", "");
         return root;
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -80,8 +80,6 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
         progress=(TextView)view.findViewById(R.id.userProgress);
         edit=(Button)view.findViewById(R.id.editGroup);
         leave=(Button)view.findViewById(R.id.leaveGroup);
-
-        user="91234567";
 
         RequestQueue queue= Volley.newRequestQueue(getContext());
         StringRequest sr=new StringRequest(Request.Method.GET, "https://i.cs.hku.hk/~khchan4/group.php?user="+user+"&id="+group,

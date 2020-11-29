@@ -2,7 +2,7 @@ package com.example.groupproject;
 
 import android.app.Application;
 
-public class LoginInfo extends Application {
+public class LoginInfo {
     private String user;
 
     public String getUser() {

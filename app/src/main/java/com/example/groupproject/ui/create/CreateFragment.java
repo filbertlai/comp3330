@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,8 @@ import com.example.groupproject.Group;
 import com.example.groupproject.GroupAdapter;
 import com.example.groupproject.R;
 import com.example.groupproject.ui.create.CreateFragment;
+import com.example.groupproject.ui.edit.EditGroupFragment;
+import com.example.groupproject.ui.group.GroupFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -147,7 +151,13 @@ public class CreateFragment extends Fragment  {
                                             });
                                             errormsg.show();
                                         } else {
-                                            AlertDialog.Builder errormsg = new AlertDialog.Builder(getContext());
+                                            String group_id=jsonObject.getString("group_id");
+                                            Toast.makeText(getContext(),"Group Created", Toast.LENGTH_SHORT).show();
+                                            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                            Fragment f= new GroupFragment();
+                                            ((GroupFragment) f).setgpno(group_id);
+                                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
+                                            /*AlertDialog.Builder errormsg = new AlertDialog.Builder(getContext());
                                             errormsg.setTitle("Success");
                                             TextView errortv = new TextView(getActivity());
                                             errortv.setText("Created a Group!");
@@ -169,7 +179,7 @@ public class CreateFragment extends Fragment  {
                                                     fragmentTransaction.commit();
                                                 };
                                             });
-                                            errormsg.show();
+                                            errormsg.show();*/
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();

@@ -16,11 +16,19 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.groupproject.ui.group.GroupFragment;
 import com.example.groupproject.ui.home.HomeFragment;
 import com.example.groupproject.ui.join.JoinFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
     ArrayList<Group> groups;
@@ -57,7 +65,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                 public void onClick(View view) {
                     int position = holder.getAdapterPosition();
                     Group group = groups.get(position);
-                    //Toast.makeText(view.getContext(), group.group_name, Toast.LENGTH_SHORT).show();
                     AppCompatActivity activity=(AppCompatActivity)view.getContext();
                     GroupFragment f=new GroupFragment();
                     f.setgpno(group.group_id);
@@ -73,10 +80,45 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                 public void onClick(View view) {
                     int position = holder.getAdapterPosition();
                     Group group = groups.get(position);
+
+                    RequestQueue queue= Volley.newRequestQueue(view.getContext());
+                    StringRequest postRequest = new StringRequest(Request.Method.POST, "https://i.cs.hku.hk/~khchan4/join.php",
+                            new Response.Listener<String>()
+                            {
+                                @Override
+                                public void onResponse(String response) {
+                                    AppCompatActivity activity=(AppCompatActivity)view.getContext();
+                                    GroupFragment f=new GroupFragment();
+                                    f.setgpno(group.group_id);
+                                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
+                                }
+                            },
+                            new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+
+                                }
+                            }
+                    ) {
+                        @Override
+                        protected Map<String, String> getParams()
+                        {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("group", group.group_id);
+                            params.put("user", group.user_id);
+                            return params;
+                        }
+                    };
+                    queue.add(postRequest);
+
+
+
+
+
+
                     //Toast.makeText(view.getContext(), "Join", Toast.LENGTH_SHORT).show();
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    Fragment f= new HomeFragment();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
+
                 }
             });
         }
@@ -92,7 +134,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             return;
         }
         holder.progress.setText(group.finished+"/"+group.total);
-        if(group.finished.equals(group.total)) {
+        if(!group.total.equals("0") && group.finished.equals(group.total)) {
             holder.groupView.findViewById(R.id.groupHeader).setBackgroundColor(ContextCompat.getColor(holder.groupView.getContext(),R.color.finished));
         }
     }

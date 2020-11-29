@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    android:clickable="true"
-    android:id = "@+id/view"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ScrollView
         android:layout_width="match_parent"
@@ -15,6 +13,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -38,35 +37,22 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="40dp"
                     android:textSize="20sp" />
+
+
             </LinearLayout>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:text="Peter" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"/>
-            <Button
-                android:id="@+id/editGroup"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Edit Group"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="20dp" />
-            <Button
-                android:id="@+id/addtask"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add Task"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="20dp" />
-            <Button
-                android:id="@+id/leaveGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Leave Group"
-                android:backgroundTint="@color/delete"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="20dp" />
+
 
             <TextView
                 android:layout_width="match_parent"

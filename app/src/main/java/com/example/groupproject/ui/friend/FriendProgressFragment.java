@@ -1,4 +1,4 @@
-package com.example.groupproject.ui.group;
+package com.example.groupproject.ui.friend;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +30,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.groupproject.Group;
 import com.example.groupproject.GroupAdapter;
-import com.example.groupproject.MainActivity;
 import com.example.groupproject.Member;
 import com.example.groupproject.MemberAdapter;
 import com.example.groupproject.R;
@@ -48,18 +47,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GroupFragment extends Fragment implements TaskStatusCallback {
+public class FriendProgressFragment extends Fragment {
     ArrayList<Task> tasks=new ArrayList<Task>();
     ArrayList<Member> members=new ArrayList<Member>();
     boolean isOwner;
     ProgressBar pb;
     TextView progress;
-    Button edit, leave;
     private String group="1";
-    TaskStatusCallback tsc=this;
     int total, finished;
     String group_id, group_name, group_description, user;
-
 
     public void setgpno(String gpno){
         this.group=gpno;
@@ -68,19 +64,18 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_view, container, false);
-        user=getActivity().getSharedPreferences("progressSharer", getActivity().MODE_PRIVATE).getString("user_id", "");
+        View root = inflater.inflate(R.layout.fragment_view_friend, container, false);
+
         return root;
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tasks.clear();
-        members.clear();
+        Bundle data=getArguments();
+        user=data.getString("user_id");
+        group=data.getString("group_id");
         pb=(ProgressBar)view.findViewById(R.id.progressBar);
         progress=(TextView)view.findViewById(R.id.userProgress);
-        edit=(Button)view.findViewById(R.id.editGroup);
-        leave=(Button)view.findViewById(R.id.leaveGroup);
-
         RequestQueue queue= Volley.newRequestQueue(getContext());
         StringRequest sr=new StringRequest(Request.Method.GET, "https://i.cs.hku.hk/~khchan4/group.php?user="+user+"&id="+group,
                 new Response.Listener<String>() {
@@ -89,15 +84,13 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
                         try {
                             JSONObject obj=new JSONObject(response);
                             JSONArray arr=obj.getJSONArray("tasks");
-                            isOwner=obj.getString("group_owner").equals(user);
+                            isOwner=false;
                             total=obj.getInt("task_total");
                             finished=obj.getInt("finished");
                             group_id=obj.getString("group_id");
                             group_name=obj.getString("group_name");
-                            ((MainActivity)getActivity()).getSupportActionBar().setTitle(group_name);
                             group_description=obj.getString("group_description");
                             setProgress();
-                            showOwnerFunc();
                             for(int i=0;i<arr.length();i++) {
                                 JSONObject task=arr.getJSONObject(i);
                                 tasks.add(
@@ -126,14 +119,9 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
                             RecyclerView recyclerView=view.findViewById(R.id.task_recycler_view);
                             LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
                             recyclerView.setLayoutManager(layoutManager);
-                            TaskAdapter adapter=new TaskAdapter(tasks, isOwner);
-                            adapter.callback=tsc;
+                            TaskAdapter adapter=new TaskAdapter(tasks, false);
+                            adapter.viewFriend=true;
                             recyclerView.setAdapter(adapter);
-                            recyclerView=view.findViewById(R.id.member_recycler_view);
-                            layoutManager=new LinearLayoutManager(getContext());
-                            recyclerView.setLayoutManager(layoutManager);
-                            MemberAdapter mAdapter=new MemberAdapter(members);
-                            recyclerView.setAdapter(mAdapter);
                         }
                         catch(Exception e) {
                         }
@@ -145,60 +133,7 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
                     }
                 });
         queue.add(sr);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                Fragment f= new EditGroupFragment();
-                Bundle data = new Bundle();
-                data.putString("group_id", group_id);
-                data.putString("group_name", group_name);
-                data.putString("group_description", group_description);
-                f.setArguments(data);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
-            }
-        });
-        leave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RequestQueue queue= Volley.newRequestQueue(view.getContext());
-                StringRequest postRequest = new StringRequest(Request.Method.POST, "https://i.cs.hku.hk/~khchan4/leave.php",
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                getActivity().onBackPressed();
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
 
-                            }
-                        }
-                ) {
-                    @Override
-                    protected Map<String, String> getParams()
-                    {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("group", group_id);
-                        params.put("user", user);
-                        return params;
-                    }
-                };
-                queue.add(postRequest);
-            }
-        });
-    }
-    public void taskStatusChanged(boolean status) {
-        if(status) {
-            finished+=1;
-        }
-        else {
-            finished-=1;
-        }
-        setProgress();
     }
     public void setProgress() {
         if(total==0) {
@@ -209,11 +144,5 @@ public class GroupFragment extends Fragment implements TaskStatusCallback {
         int p=(int)((float)finished/total*100);
         pb.setProgress(p);
         progress.setText(finished+"/"+total);
-    }
-    public void showOwnerFunc() {
-        if(isOwner) {
-            leave.setVisibility(View.GONE);
-            edit.setVisibility(View.VISIBLE);
-        }
     }
 }

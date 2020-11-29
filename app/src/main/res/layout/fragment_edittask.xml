@@ -31,7 +31,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/Name"
                 android:layout_width="fill_parent"
                 android:layout_weight="30"
                 android:layout_height="wrap_content"
@@ -59,6 +59,7 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/order"
                 android:layout_width="fill_parent"
                 android:layout_weight="30"
                 android:layout_height="wrap_content"

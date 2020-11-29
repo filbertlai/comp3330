@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id = "@+id/addtask"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/Name"
                 android:layout_width="fill_parent"
                 android:layout_weight="30"
                 android:layout_height="wrap_content"
@@ -39,39 +40,40 @@
                 android:lines="2"
                 android:layout_gravity="right"
                 android:inputType="textMultiLine"
-                android:text="@string/edittask_name" />
+                android:hint="@string/edittask_name" />
 
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:layout_weight="70"
-                android:layout_alignParentLeft="true"
-                android:gravity="center"
-                android:lines="1"
-                android:text="@string/edittask_order"
-                android:textSize="16sp" />
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_weight="70"-->
+<!--                android:layout_alignParentLeft="true"-->
+<!--                android:gravity="center"-->
+<!--                android:lines="1"-->
+<!--                android:text="@string/edittask_order"-->
+<!--                android:textSize="16sp" />-->
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_weight="30"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:lines="1"
-                android:layout_gravity="right"
-                android:inputType="textMultiLine"
-                android:text="@string/edittask_order" />
+<!--            <EditText-->
+<!--                android:id="@+id/order"-->
+<!--                android:inputType="number"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_weight="30"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:lines="1"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:hint="@string/edittask_order" />-->
 
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
         <Button
-            android:id="@+id/buttonedit"
+            android:id="@+id/buttonadd"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/add_add"

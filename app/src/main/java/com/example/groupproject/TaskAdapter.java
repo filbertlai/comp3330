@@ -39,6 +39,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             task=taskView.findViewById(R.id.task);
             taskContainer=taskView.findViewById(R.id.taskContainer);
             edit=taskView.findViewById(R.id.edit);
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 

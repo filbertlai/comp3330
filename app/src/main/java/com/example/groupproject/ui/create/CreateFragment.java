@@ -159,29 +159,6 @@ public class CreateFragment extends Fragment  {
                                             Fragment f= new GroupFragment();
                                             ((GroupFragment) f).setgpno(group_id);
                                             activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
-                                            /*AlertDialog.Builder errormsg = new AlertDialog.Builder(getContext());
-                                            errormsg.setTitle("Success");
-                                            TextView errortv = new TextView(getActivity());
-                                            errortv.setText("Created a Group!");
-                                            errortv.setTextColor(Color.BLACK);
-                                            errortv.setGravity(Gravity.CENTER);
-                                            errortv.setTextSize(15);
-                                            errortv.setPadding(5, 5, 5, 5);
-                                            errormsg.setView(errortv);
-                                            errormsg.setNegativeButton("OK", new DialogInterface.OnClickListener(){
-                                                @Override
-                                                public void onClick(DialogInterface d, int arg1) {
-                                                    d.dismiss();
-                                                    CreateFragment fragment2 = new CreateFragment();
-                                                    FragmentManager fragmentManager = getFragmentManager();
-                                                    FragmentTransaction fragmentTransaction =
-                                                            fragmentManager.beginTransaction();
-                                                    fragmentTransaction.replace(R.id.createfragment, fragment2);
-                                                    fragmentTransaction.addToBackStack(null);
-                                                    fragmentTransaction.commit();
-                                                };
-                                            });
-                                            errormsg.show();*/
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -203,8 +180,6 @@ public class CreateFragment extends Fragment  {
                                         }
 
                                     }
-
-//
                                 }
                             }
                     ) {

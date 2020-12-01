@@ -111,14 +111,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                         }
                     };
                     queue.add(postRequest);
-
-
-
-
-
-
-                    //Toast.makeText(view.getContext(), "Join", Toast.LENGTH_SHORT).show();
-
                 }
             });
         }

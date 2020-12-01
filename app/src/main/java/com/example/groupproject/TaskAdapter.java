@@ -76,32 +76,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         CardView cardView=(CardView)view.findViewById(R.id.taskCardView);
         cardView.setRadius(30);
         cardView.setCardElevation(10);
-        /*if(layoutID==R.layout.group_item) {
-            holder.groupView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = holder.getAdapterPosition();
-                    Group group = groups.get(position);
-                    //Toast.makeText(view.getContext(), group.group_name, Toast.LENGTH_SHORT).show();
-                    AppCompatActivity activity=(AppCompatActivity)view.getContext();
-                    Fragment f=new GroupFragment();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
-                }
-            });
-        }
-        else {
-            holder.groupView.findViewById(R.id.join).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = holder.getAdapterPosition();
-                    Group group = groups.get(position);
-                    //Toast.makeText(view.getContext(), "Join", Toast.LENGTH_SHORT).show();
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    Fragment f= new HomeFragment();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, f).addToBackStack(null).commit();
-                }
-            });
-        }*/
         return holder;
     }
 

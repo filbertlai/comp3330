@@ -54,22 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                 String ph = phone.getText().toString();
                 String pw = password.getText().toString();
                 if (pw.isEmpty() || ph.isEmpty()) {
-                    /*AlertDialog.Builder errormsg = new AlertDialog.Builder(getApplicationContext());
-                    errormsg.setTitle("Error");
-                    TextView errortv = new TextView(getApplicationContext());
-                    errortv.setText("Please input all information!");
-                    errortv.setTextColor(Color.BLACK);
-                    errortv.setGravity(Gravity.CENTER);
-                    errortv.setTextSize(15);
-                    errortv.setPadding(5, 5, 5, 5);
-                    errormsg.setView(errortv);
-                    errormsg.setNegativeButton("OK", new DialogInterface.OnClickListener(){
-                        @Override
-                        public void onClick(DialogInterface d, int arg1) {
-                            d.dismiss();
-                        };
-                    });
-                    errormsg.show();*/
                     Toast.makeText(getApplicationContext(), "Please input all information!", Toast.LENGTH_SHORT).show();
                 } else {
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -83,22 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                                         jsonObject = new JSONObject(response);
                                         String str1 = jsonObject.getString("status");
                                         if (str1.equals("0")) {
-                                            /*AlertDialog.Builder errormsg = new AlertDialog.Builder(getApplicationContext());
-                                            errormsg.setTitle("Error");
-                                            TextView errortv = new TextView(getApplicationContext());
-                                            errortv.setText("Login failed! Wrong Login Credentials");
-                                            errortv.setTextColor(Color.BLACK);
-                                            errortv.setGravity(Gravity.CENTER);
-                                            errortv.setTextSize(15);
-                                            errortv.setPadding(5, 5, 5, 5);
-                                            errormsg.setView(errortv);
-                                            errormsg.setNegativeButton("OK", new DialogInterface.OnClickListener(){
-                                                @Override
-                                                public void onClick(DialogInterface d, int arg1) {
-                                                    d.dismiss();
-                                                };
-                                            });
-                                            errormsg.show();*/
                                             Toast.makeText(getApplicationContext(), "Login failed! Wrong Login Credentials", Toast.LENGTH_SHORT).show();
                                         } else {
                                             /*LoginInfo loginInfo = new LoginInfo();
